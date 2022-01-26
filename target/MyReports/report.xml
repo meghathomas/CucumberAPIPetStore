@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="6" time="6.243">
+    <testcase classname="Validate E2E flow of Store API" name="Validate the POST request to add a new record" time="2.505">
+        <system-out><![CDATA[Given Generate Payload for "storeAPI" POST Request..........................passed
+When Generate request for API...............................................passed
+And Call the "POST" API with resource "order"...............................passed
+Then Validate Status code is 200............................................passed
+And Validate response JSON schema using "storeSchema.json"..................passed
+]]></system-out>
+    </testcase>
+    <testcase classname="Validate E2E flow of Store API" name="Validate the GET request to get the newly added record" time="0.651">
+        <failure message="expected [200] but found [404]" type="java.lang.AssertionError"><![CDATA[Given Generate request for API..............................................passed
+When Call the "GET" API with resource "order" by "id".......................passed
+Then Validate Status code is 200............................................failed
+And Validate "id" in response...............................................skipped
+And Validate response JSON schema using "storeSchema.json"..................skipped
+
+StackTrace:
+java.lang.AssertionError: expected [200] but found [404]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failNotEquals(Assert.java:1413)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:149)
+	at org.testng.Assert.assertEquals(Assert.java:131)
+	at org.testng.Assert.assertEquals(Assert.java:1294)
+	at stepDefinitions.stepDefStoreAPI.validate_status_code_is(stepDefStoreAPI.java:62)
+	at ✽.Validate Status code is 200(file:///D:/Project/CucumberAPIPetStore/src/test/java/features/E2EStoreApiFlow.feature:13)
+]]></failure>
+    </testcase>
+    <testcase classname="Validate E2E flow of Store API" name="Validate the DELETE request to remove the added record" time="0.634">
+        <system-out><![CDATA[Given Generate request for API..............................................passed
+When Call the "DELETE" API with resource "order" by "id"....................passed
+Then Validate Status code is 200............................................passed
+]]></system-out>
+    </testcase>
+    <testcase classname="Validate E2E flow of Store API" name="Validate the GET request to validate deleted record is removed" time="1.003">
+        <system-out><![CDATA[Given Generate request for API..............................................passed
+When Call the "GET" API with resource "order" by "id".......................passed
+Then Validate Status code is 404............................................passed
+And Validate "message" in response..........................................passed
+]]></system-out>
+    </testcase>
+    <testcase classname="Validate E2E flow of Store API" name="Validate the GET request to validate inventory" time="0.629">
+        <system-out><![CDATA[Given Generate request for API..............................................passed
+When Call the "GET" API with resource "inventory" by "".....................passed
+Then Validate Status code is 200............................................passed
+]]></system-out>
+    </testcase>
+    <testcase classname="Validate E2E flow of Store API" name="Validate the DELETE request with already deleted record" time="0.643">
+        <system-out><![CDATA[Given Generate request for API..............................................passed
+When Call the "DELETE" API with resource "order" by "id"....................passed
+Then Validate Status code is 404............................................passed
+And Validate "message" in response..........................................passed
+]]></system-out>
+    </testcase>
+</testsuite>
